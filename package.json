@@ -1,0 +1,14 @@
+{
+  "name": "min",
+  "version": "1.0.0",
+  "description": "카카오톡에서 홍보가 전송되었을때 가리는 봇.",
+  "main": "auth-client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-kakao": "^3.1.10"
+  }
+}
