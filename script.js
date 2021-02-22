@@ -1,8 +1,8 @@
 const node_kakao = require("node-kakao");
-const client = new node_kakao.TalkClient("디바이스 이름으로 채워주세요. (아무거나 가능합니다.)", "PxHFhjCX8kHNKKBDYd7ZPvmYF3DVzj/IczGQ9FILVrLGLGRPf2CL+BXt5jH5iwrHAEZJGsa38tcj9XLAdj79+g==");
+const client = new node_kakao.TalkClient("디바이스 이름으로 채워주세요. (아무거나 가능합니다.)", "UUID 실행");
 const banWord = ["매도", "매수", "리딩", "주식", "주가", "급등주", "상한가", "수익", "투자", "입장하기", "open.kakao.com", "/o/g", "오픈채팅방 배포/가리기봇" /* 홍보를 감지할 메세지를 추가하거나 삭제할 수 있어요. */];
 
-login("sksksms2@gmail.com", "tlswlstjq1!");
+login("kakao talk id", "kakao talk pw");
 
 client.on("message",async (chat) => {
 
@@ -14,20 +14,12 @@ client.on("message",async (chat) => {
 
     const test = await client.OpenLinkManager.requestKickList(id);
 
-    console.log(test);
-    
-    test.result.filter((value) => {
-        console.log(value.kickedMemberStruct);
-    })
     if(type === 2){
         for (let i = 0; i < banWord.length; i++) {
             if (JSON.stringify(chat.rawAttachment).includes(banWord[i]) || chat.Text.includes(banWord[i])) {
                 chat.hide();
-
-                console.log(chat.hide());
-                const a = await client.OpenLinkManager.kickMember(chat.channel, chat.sender.id);
-                console.log(a);
-                chat.replyText("TEST");
+                await client.OpenLinkManager.kickMember(chat.channel, chat.sender.id);
+                chat.replyText("홍보로 인해서 강퇴를 합니다.");
                 break;
             }
         }
